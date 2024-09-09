@@ -3,7 +3,6 @@ package controller
 import (
 	"kafka-upload-api-golang/internal/kafka-upload/service"
 	"kafka-upload-api-golang/pkg/response"
-	"log/slog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,12 +18,15 @@ func UploadKafka(c *gin.Context) {
 
 	var dataBody map[string]interface{}
 	if err := c.ShouldBind(&dataBody); err != nil {
-		slog.Error(err.Error())
 		response.Error(c, err.Error())
 		return
 	}
 
 	var kafkaUploadService service.KafkaUploadService
-	result := kafkaUploadService.Upload(dataUri.Topic, dataBody)
-	response.Success(c, result)
+	if err := kafkaUploadService.Upload(c, dataUri.Topic, dataBody); err != nil {
+		response.Error(c, err.Error())
+		return
+	}
+
+	response.Success(c, nil)
 }

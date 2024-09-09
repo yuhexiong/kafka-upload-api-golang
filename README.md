@@ -7,6 +7,13 @@ Provide an API to upload data to a Kafka topic.
 - Web FrameWork: Gin v1.10.0
 - Tool: Kafka-Go v0.4.47
 
+
+## ENV
+copy .env.example and rename as .env  
+```
+KAFKA_BROKER=localhost:9092
+```
+
 ## Run
 
 ### Update Modules
@@ -20,12 +27,6 @@ go get -u && go mod tidy -v
 go run cmd/main.go
 ```
 
-
-## ENV
-copy .env.example and rename as .env  
-```
-KAFKA_BROKER=localhost:9092
-```
 
 
 ## API
