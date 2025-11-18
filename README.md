@@ -18,7 +18,8 @@ KAFKA_BROKER=localhost:9092
 
 ### Update Modules
 ```
-go get -u && go mod tidy -v
+go get -u all
+go mod tidy -v
 ```
 
 
